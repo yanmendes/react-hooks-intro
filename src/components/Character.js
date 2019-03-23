@@ -50,7 +50,7 @@ class Character extends Component {
           gender: charData.gender,
           movieCount: charData.films.length
         };
-        this.setState({ loadedCharacter: loadedCharacter, isLoading: false });
+        this.setState({ loadedCharacter, isLoading: false });
       })
       .catch(err => {
         console.log(err);
@@ -62,23 +62,24 @@ class Character extends Component {
   }
 
   render() {
-    let content = <p>Loading Character...</p>;
-
-    if (!this.state.isLoading && this.state.loadedCharacter.id) {
-      content = (
-        <Summary
-          name={this.state.loadedCharacter.name}
-          gender={this.state.loadedCharacter.gender}
-          height={this.state.loadedCharacter.height}
-          hairColor={this.state.loadedCharacter.colors.hair}
-          skinColor={this.state.loadedCharacter.colors.skin}
-          movieCount={this.state.loadedCharacter.movieCount}
-        />
-      );
-    } else if (!this.state.isLoading && !this.state.loadedCharacter.id) {
-      content = <p>Failed to fetch character.</p>;
-    }
-    return content;
+    return (
+      <>
+        {this.state.isLoading && <p>Loading Character...</p>}
+        {!this.state.isLoading && this.state.loadedCharacter.id && (
+          <Summary
+            name={this.state.loadedCharacter.name}
+            gender={this.state.loadedCharacter.gender}
+            height={this.state.loadedCharacter.height}
+            hairColor={this.state.loadedCharacter.colors.hair}
+            skinColor={this.state.loadedCharacter.colors.skin}
+            movieCount={this.state.loadedCharacter.movieCount}
+          />
+        )}
+        {!this.state.isLoading && !this.state.loadedCharacter.id && (
+          <p>Failed to fetch character.</p>
+        )}
+      </>
+    );
   }
 }
 
