@@ -25,6 +25,10 @@ class Character extends Component {
     }
   }
 
+  componentWillUnmount() {
+    console.log("Too soon...");
+  }
+
   fetchData = () => {
     console.log(
       "Sending Http request for new character with id " +
@@ -56,10 +60,6 @@ class Character extends Component {
         console.log(err);
       });
   };
-
-  componentWillUnmount() {
-    console.log("Too soon...");
-  }
 
   render() {
     return (

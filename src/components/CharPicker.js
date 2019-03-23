@@ -6,6 +6,10 @@ class CharPicker extends Component {
   state = { characters: [], isLoading: false };
 
   componentDidMount() {
+    this.fetch();
+  }
+
+  fetch() {
     this.setState({ isLoading: true });
     fetch("https://swapi.co/api/people")
       .then(response => {
