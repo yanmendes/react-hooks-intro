@@ -54,11 +54,12 @@ class Character extends Component {
           gender: charData.gender,
           movieCount: charData.films.length
         };
-        this.setState({ loadedCharacter, isLoading: false });
+        this.setState({ loadedCharacter });
       })
       .catch(err => {
         console.log(err);
-      });
+      })
+      .finally(() => this.setState({ isLoading: false }));
   };
 
   render() {

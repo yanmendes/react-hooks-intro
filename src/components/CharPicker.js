@@ -9,7 +9,7 @@ class CharPicker extends Component {
     this.fetchData();
   }
 
-  fetchData() {
+  fetchData = () => {
     this.setState({ isLoading: true });
     fetch("https://swapi.co/api/people")
       .then(response => {
@@ -24,14 +24,14 @@ class CharPicker extends Component {
           characters: selectedCharacters.map((char, index) => ({
             name: char.name,
             id: index + 1
-          })),
-          isLoading: false
+          }))
         });
       })
       .catch(err => {
         console.log(err);
-      });
-  }
+      })
+      .finally(() => this.setState({ isLoading: false }));
+  };
 
   render() {
     return (
