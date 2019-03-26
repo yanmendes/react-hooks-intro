@@ -30,10 +30,7 @@ class Character extends Component {
   }
 
   fetchData = () => {
-    console.log(
-      "Sending Http request for new character with id " +
-        this.props.selectedChar
-    );
+    console.log("Sending Http request at Character.js");
     this.setState({ isLoading: true });
     fetch("https://swapi.co/api/people/" + this.props.selectedChar)
       .then(response => {

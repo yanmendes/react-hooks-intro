@@ -10,6 +10,7 @@ class CharPicker extends Component {
   }
 
   fetchData = () => {
+    console.log("Sending Http request at CharPicker.js");
     this.setState({ isLoading: true });
     fetch("https://swapi.co/api/people")
       .then(response => {
